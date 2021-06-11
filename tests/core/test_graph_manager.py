@@ -45,5 +45,8 @@ def test_process_routing_query_error(minimal_graph_manager):
     # String `\x1b[91m` and `\x1b[0m` represent red color on the console.
     assert route.strip("\x1b[91m").strip("\x1b[0m") == "Error: No route from A to E"
 
+    route = minimal_graph_manager.process_routing_query("route Nowhere -> Norway")
+    assert route.strip("\x1b[91m").strip("\x1b[0m") == "Error: No route from Nowhere to Norway"
+
     nearby = minimal_graph_manager.process_routing_query("nearby A, 55")
     assert nearby.strip("\x1b[91m").strip("\x1b[0m") == "Error: No nearby stations from A with the travel time of 55"

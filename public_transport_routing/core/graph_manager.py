@@ -63,12 +63,18 @@ class GraphManager:
         """
         if query.startswith("route"):
             _, source, destination = re.match(route_query_regex, query).groups()
-            source = self.vertices[source]
-            destination = self.vertices[destination]
-            return self.find_route(source, destination)
+            try:
+                source = self.vertices[source]
+                destination = self.vertices[destination]
+                return self.find_route(source, destination)
+            except KeyError:
+                return f"\033[91mError: No route from {source} to {destination}\x1b[0m"
         _, source, maximum_travel_time = re.match(nearby_query_regex, query).groups()
-        source = self.vertices[source]
-        return self.find_nearby(source, int(maximum_travel_time))
+        try:
+            source = self.vertices[source]
+            return self.find_nearby(source, int(maximum_travel_time))
+        except KeyError:
+            return f"\033[91mError: No nearby stations from {source} with the travel time of {maximum_travel_time}\x1b[0m"
 
     def find_route(self, source: Node, destination: Node) -> str:
         """
