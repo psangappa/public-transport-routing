@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "public-transport-routing"
+version = "0.1.0"
+description = "The routing program to find shortest route between two stations."
+authors = ["Prabhuling"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+# No other external dependencies required.
+
+[tool.poetry.dev-dependencies]
+# for testing.
+pytest = "^6.2.2"
+pytest-cov = "^2.11.1"
+
+[tool.poetry.scripts]
+start_app = "public_transport_routing.main:start_app"
+
+[build-system]
+requires = ["poetry-core>=1,<2"]
+build-backend = "poetry.core.masonry.api"
