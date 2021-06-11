@@ -37,3 +37,4 @@ clean:
 dist-clean: clean
 	rm -rf ${VIRTUALENV_DIR}
 	find . -depth -name '*.egg-info' -exec rm -rf {} \;
+	find . -depth -name '*.pytest*' -exec rm -rf {} \;
