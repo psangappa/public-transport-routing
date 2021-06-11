@@ -50,3 +50,7 @@ def test_process_routing_query_error(minimal_graph_manager):
 
     nearby = minimal_graph_manager.process_routing_query("nearby A, 55")
     assert nearby.strip("\x1b[91m").strip("\x1b[0m") == "Error: No nearby stations from A with the travel time of 55"
+
+    nearby = minimal_graph_manager.process_routing_query("nearby Nowhere, 55")
+    assert nearby.strip("\x1b[91m").strip(
+        "\x1b[0m") == "Error: No nearby stations from Nowhere with the travel time of 55"
